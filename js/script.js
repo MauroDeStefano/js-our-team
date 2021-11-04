@@ -2,6 +2,7 @@
 // creiamo un oggetto contenente immagine, nome, descrizione.
 
 const container = document.querySelector(".team-container");
+const btn = document.querySelector("#addMemberButton");
 
 const profile = [
   {
@@ -36,13 +37,37 @@ const profile = [
   }
 ];
 
-for(let index in profile){
+createBox();
+
+btn.addEventListener("click", function(){
+  let nameToAdd = document.getElementById("name").value;
+  let jobToAdd = document.getElementById("role").value;
+  let imgToAdd = document.getElementById("image").value;
+
+  const newProfile = {
+    img: imgToAdd,
+    name: nameToAdd,
+    job: jobToAdd
+  }
+  
+  profile.push(newProfile);
+
+
+  console.log(nameToAdd);
+  console.log(profile);
+  container.innerHTML= "";
+  createBox();
+});
+
+ 
+
+function createBox(){
+  for(let index in profile){
   const singleProfile = profile[index];
   
   const imgsingleProfile = singleProfile.img;
   const namesingleProfile = singleProfile.name;
   const jobsingleProfile = singleProfile.job;
-
 
   container.innerHTML += `
   <div class="team-card">
@@ -59,6 +84,6 @@ for(let index in profile){
 ;
 
 };
-
-
+}
 // intercettare il bottone e caricare il contenuto dei tre box di testo con un push 
+
